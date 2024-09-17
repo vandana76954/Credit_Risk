@@ -1,5 +1,6 @@
 from flask import Flask,request,render_template,jsonify
 from src.pipeline.prediction_pipeline import CustomData,PredictPipeline
+from src.pipeline.training_pipeline import initiate_training
 
 application=Flask(__name__)
 
@@ -11,8 +12,13 @@ app=application
 def home_page():
     return render_template('index.html')
 
-@app.route('/predict', methods=['GET','POST'])
+@app.route("/train")
+def train():
+    initiate_training()
+    return jsonify("training completed")
 
+
+@app.route('/predict', methods=['GET','POST'])
 def predict_datapoint():
     if request.method=='GET':
         return render_template('form.html')
@@ -56,7 +62,7 @@ def predict_datapoint():
         else:
             results = "The Credit card holder will not be Defaulter in the next month"
 
-    return render_template('results.html', final_result = results)
+        return render_template('results.html', final_result = results)
 
         
 

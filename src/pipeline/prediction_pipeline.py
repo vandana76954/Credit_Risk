@@ -53,7 +53,7 @@ class CustomData:
                  pay_amt2:float,
                  pay_amt3:float,
                  pay_amt4:float,
-                 Pay_Amt5:float,
+                 pay_amt5:float,
                  pay_amt6:float):
         
         self.sex=sex
